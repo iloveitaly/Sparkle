@@ -21,6 +21,11 @@ is an easy-to-use software update framework for Cocoa developers.
 
 * Sparkle requires no code in your app, so it's trivial to upgrade or remove the module.
 
+# Customizations
+This fork off of Sparkle does *not* ask for permission to download and install a update. Of course, this is not good practice in any user facing application.
+This fork is currently being used in environment controlling many client machines asking as a kiosk – we wanted an easy way to push updates out to the
+machines and this solved our needs perfectly.
+
 ## New in Sparkle 1.5:
 
 * Optionally sends user demographic information to the server when checking for updates.
