@@ -156,7 +156,7 @@
 
 - (void)unarchiverDidFinish:(SUUnarchiver *)ua
 {
-	[self installUpdate];
+	[self installWithToolAndRelaunch:YES];
 }
 
 - (void)unarchiver:(SUUnarchiver *)unarchiver requiresPasswordReturnedViaInvocation:(NSInvocation *)invocation
