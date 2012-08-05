@@ -10,6 +10,7 @@
 
 #import "SUAutomaticUpdateAlert.h"
 #import "SUHost.h"
+#import "SUConstants.h"
 
 @implementation SUAutomaticUpdateDriver
 
@@ -31,7 +32,7 @@
 	switch (choice)
 	{
 		case SUInstallNowChoice:
-			[self installUpdate];
+			[self installWithToolAndRelaunch:YES];
 			break;
 			
 		case SUInstallLaterChoice:
@@ -48,22 +49,15 @@
 
 - (BOOL)shouldInstallSynchronously { return postponingInstallation; }
 
-- (void)installUpdate
+- (void)installWithToolAndRelaunch:(BOOL)relaunch
 {
 	showErrors = YES;
-	[super installUpdate];
+	[super installWithToolAndRelaunch:relaunch];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)note
 {
-	[self installUpdate];
-}
-
-- (void)installerFinishedForHost:(SUHost *)aHost
-{
-	if (aHost != host) { return; }
-	if (!postponingInstallation)
-		[self relaunchHostApp];
+	[self installWithToolAndRelaunch:NO];
 }
 
 - (void)abortUpdateWithError:(NSError *)error
